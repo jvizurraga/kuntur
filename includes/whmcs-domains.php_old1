@@ -1,0 +1,30 @@
+<?php
+// Cargar WHMCS
+require_once __DIR__ . '/../customer/init.php';
+
+// Usuario admin válido de WHMCS
+$adminUsername = 'adminkuntur'; // ← asegúrate que exista
+
+// Llamada API WHMCS
+$response = localAPI('GetTLDPricing', [], $adminUsername);
+
+// Verificación de seguridad
+if (!is_array($response)) {
+    return [];
+}
+
+if (!isset($response['result']) || $response['result'] !== 'success') {
+    return [];
+}
+
+// Extraer precios seguros
+$domains = [];
+
+foreach (['com', 'net', 'org', 'info', 'pe'] as $tld) {
+    if (isset($response['pricing'][$tld]['register'][1])) {
+        $domains[$tld] = (float) $response['pricing'][$tld]['register'][1];
+    }
+}
+
+/* 🔥 ESTA LÍNEA ES LA CLAVE 🔥 */
+return $domains;

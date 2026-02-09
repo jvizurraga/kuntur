@@ -1,0 +1,114 @@
+:root{
+    --azul-oscuro:#0B1C2D;
+    --azul:#132B44;
+    --dorado:#C9A227;
+    --dorado-hover:#E6B84C;
+    --blanco:#ffffff;
+    --gris:#f2f2f2;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:var(--gris);
+}
+
+/* ===== CARRUSEL DE PLANES ===== */
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;     /* ✅ ESTO ES LO NUEVO (clave) */
+  margin: 0 auto;        /* centra el carrusel */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 40px 0; /* espacio para crecer */	
+}
+
+
+.carousel-track {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+  width: max-content;
+  padding: 40px 0px;     /* da espacio lateral para moverse */
+  transition: transform 0.25s linear;
+  will-change: transform;
+}
+
+
+/* Tarjetas */
+.plan-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  width: 280px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  text-align: center;
+  position: relative;
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* estados dinámicos */
+.plan-card.is-active {
+  opacity: 1;
+  transform: scale(1.05);
+  filter: none;
+  z-index: 2;
+}
+
+.plan-card.is-blur {
+  opacity: 0.35;
+  transform: scale(0.9);
+  filter: blur(1px);
+}
+
+
+/* ===== OVERRIDE PARA FOCO DINÁMICO ===== */
+.plan-card.is-active {
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+  filter: none !important;
+  z-index: 2;
+}
+
+.plan-card.is-blur {
+  opacity: 0.35 !important;
+  transform: scale(0.9) !important;
+  filter: blur(1px) !important;
+}
+
+/* Nota debajo del precio */
+.plan-card .price-note {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: -14px;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+/* ===== CHECKS DE PLANES (SOLUCIÓN FINAL) ===== */
+
+.plan-features {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.plan-features .check {
+  color: #C9A227;       /* dorado Kuntur */
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 2px;
+}
